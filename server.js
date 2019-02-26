@@ -6,6 +6,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const users = require("./api/users");
 const session = require("express-session");
+const PORT = process.env.PORT || 3001;
 
 let path = require('path');
 
@@ -30,17 +31,10 @@ MongoClient.connect('mongodb+srv://michelledlee:wVewSigYCrfARa0N@borq-s5a7m.mong
 
 	// start server only when database is connected
 	app.listen(3001, () => {
-		console.log('listening on 3001')
+		console.log('listening on ' + PORT)
 	});
 });
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, './client/public/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
 
 // handles quotes post request
 app.post('/users', (req, res) => {
