@@ -7,6 +7,9 @@ const bcrypt = require("bcryptjs");
 const users = require("./api/users");
 const session = require("express-session");
 
+const validateRegisterInput = require("./validation/register");
+const validateLoginInput = require("./validation/login");
+
 let path = require('path');
 
 let db;
@@ -42,8 +45,25 @@ app.get('/', function(req, res) {
   })
 })
 
-// handles quotes post request
+// handles registration post request
 app.post('/users', (req, res) => {
+	// validate input
+	const { errors, isValid } = validateRegisterInput(req.body);
+	console.log(isValid);
+	// if the input is not valid, return errors
+	if (!isValid) {
+		return res.status(400).json(errors);
+	}
+
+	// see if the user has already been added
+	db.collection('users').findOne({email: req.body.email}).then(user => {
+		// case if the user exists; leave
+		if (user) {
+			return res.status(400).json({email: "Email already exists"});
+		}
+	})
+
+	// store the user in the database
 	console.log(req.body);
 	let newUser = req.body;
 	    // Hash password before saving in database
@@ -130,6 +150,16 @@ app.post('/events', (req, res) => {
 
 // login
 app.post('/login', (req, res) => {
+
+	// run login information through validator
+	const { errors, isValid} = validateLoginInput(req.body);
+
+	// check validation
+	if (!isValid) {
+		return res.status(400).json(errors);
+	}
+
+	// information is valid, proceed to login
 	console.log("server");
 	console.log(req.body);
 	const email = req.body.email;

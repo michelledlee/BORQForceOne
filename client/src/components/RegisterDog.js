@@ -66,7 +66,9 @@ class RegisterDog extends Component {
               <div className="card-body">
                 <h5 className="card-title">Add Dog</h5>
 
-                
+                <p className="grey-text text-darken-1">
+                  Back to <Link to="/mydogs">My Dogs</Link>
+                </p>
                 <form
                   className="form-signin"
                   noValidate
