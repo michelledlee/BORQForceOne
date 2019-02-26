@@ -14,7 +14,7 @@ export default class EventRSVP extends Component {
   }
 
   onClick = e => {
-    e.prEventRSVPDefault();
+    e.preventDefault();
 
     const rsvpMe = {
       name: this.state.name,
