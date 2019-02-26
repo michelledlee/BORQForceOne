@@ -12,6 +12,9 @@ let path = require('path');
 
 let db;
 
+
+app.use(express.static(path.join(__dirname, 'client', 'build')));
+
 // session stuff 
 app.use(session({ secret: "Shh, its a secret!" }));
 
