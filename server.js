@@ -30,7 +30,7 @@ MongoClient.connect('mongodb+srv://michelledlee:wVewSigYCrfARa0N@borq-s5a7m.mong
 		db = client.db('borq');
 
 	// start server only when database is connected
-	app.listen(3001, () => {
+	app.listen(PORT, () => {
 		console.log('listening on ' + PORT)
 	});
 });
