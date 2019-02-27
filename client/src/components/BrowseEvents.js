@@ -34,11 +34,6 @@ class BrowseEvents extends Component {
     return this.state.events.map((eve, i) => <EventRSVP key={i++} event={eve} />);
   }
 
-  // onLogoutClick = e => {
-  //   e.preventDefault();
-  //   this.props.logoutUser();
-  // };
-
   render() {
     return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">

@@ -90,7 +90,7 @@ class RegisterDog extends Component {
                     <span className="red-text">{errors.myemail}</span>
                   </div>
                   <div className="form-label-group">
-                                      <label htmlFor="name">Name</label>
+                                      <label htmlFor="name">Dog's Name</label>
 
                     <input
                       onChange={this.onChange}
