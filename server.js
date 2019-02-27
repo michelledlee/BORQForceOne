@@ -23,9 +23,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // for parsing application/json
 app.use(bodyParser.json()); // for parsing application/json
 
-// Routes
-// app.use("/api/users", users);
-
+// mongo connection
 MongoClient.connect('mongodb+srv://michelledlee:wVewSigYCrfARa0N@borq-s5a7m.mongodb.net/borq?retryWrites=true', (err, client) => {
 	if (err) return console.log(err)
 
@@ -49,7 +47,9 @@ app.get('/', function(req, res) {
 app.post('/users', (req, res) => {
 	// validate input
 	const { errors, isValid } = validateRegisterInput(req.body);
+	console.log(errors);
 	console.log(isValid);
+
 	// if the input is not valid, return errors
 	if (!isValid) {
 		return res.status(400).json(errors);
@@ -99,7 +99,7 @@ app.get('/loggedIn', (req, res) => {
 		res.send(req.session.user);
 	}
 	else {
-		res.send({nope:"nope"});
+		res.send({nope:"no log for you"});
 	}
 })
 
@@ -111,7 +111,7 @@ app.get('/getmydogs', (req, res) => {
 		res.send(JSON.stringify(docs));
 		});
 	} else {
-		res.send({nope:"nope"});
+		res.send({nope:"no dogs for you"});
 	}
 })
 
@@ -124,7 +124,7 @@ app.get('/getmyevents', (req, res) => {
 		res.send(JSON.stringify(docs));
 		});
 	} else {
-		res.send({nope:"nope"});
+		res.send({nope:"no events for you"});
 	}
 })
 
@@ -156,6 +156,7 @@ app.post('/login', (req, res) => {
 
 	// check validation
 	if (!isValid) {
+		console.log(errors);
 		return res.status(400).json(errors);
 	}
 
@@ -193,4 +194,10 @@ app.post('/rsvp', (req, res) => {
 	db.collection('events').findOneAndUpdate({name: eventName}, {$addToSet:{rsvp : req.session.user.email}}).then(user => {
 
 	});
+});
+
+// handles logout request
+app.post('/logout', (req, res) => {
+	req.session.destroy();
+	console.log("session ded");
 });
