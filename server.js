@@ -192,12 +192,14 @@ app.post('/rsvp', (req, res) => {
 	console.log(req.body);
 	const eventName = req.body.name;
 	db.collection('events').findOneAndUpdate({name: eventName}, {$addToSet:{rsvp : req.session.user.email}}).then(user => {
-
+		res.send("completed");
 	});
+
 });
 
 // handles logout request
 app.post('/logout', (req, res) => {
 	req.session.destroy();
+	res.send("session ded");
 	console.log("session ded");
 });

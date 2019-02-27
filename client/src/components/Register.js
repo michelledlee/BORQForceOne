@@ -49,7 +49,9 @@ class Register extends Component {
 
     axios.post('/users', newUser)
       .then(res => this.props.history.push("/login")) // re-direct to login on successful register
-      .catch(err => console.log(err));
+      .catch(err => {
+        this.setState({ errors: err.response.data});
+        console.log(err)});
   };
 
   render() {
