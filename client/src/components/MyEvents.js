@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 // import { logoutUser } from "../../actions/authActions";
 import Event from "./Event.js";
+import Logout from "./Logout.js";
 
 class MyEvents extends Component {
 
@@ -32,10 +33,10 @@ class MyEvents extends Component {
     return this.state.events.map((eve, i) => <Event key={i++} event={eve} />);
   }
 
-  onLogoutClick = e => {
-    e.preventDefault();
-    this.props.logoutUser();
-  };
+  // onLogoutClick = e => {
+  //   e.preventDefault();
+  //   this.props.logoutUser();
+  // };
 
   render() {
     return (
@@ -57,18 +58,7 @@ class MyEvents extends Component {
       <Link to="/browseevents" className="btn btn-lg btn-primary btn-block text-uppercase">Browse Events</Link>
 
 
-      <button
-      style={{
-        width: "150px",
-        borderRadius: "3px",
-        letterSpacing: "1.5px",
-        marginTop: "1rem"
-      }}
-      onClick={this.onLogoutClick}
-      className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-      >
-      Logout
-      </button>
+      <Logout />
       </div>
       </div>
       </div>

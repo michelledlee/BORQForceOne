@@ -4,7 +4,6 @@ const MongoClient = require('mongodb').MongoClient;
 const app = express();
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-const users = require("./api/users");
 const session = require("express-session");
 
 const validateRegisterInput = require("./validation/register");

@@ -247,3 +247,7 @@ header.masthead .bg-circle-4 {
     background: linear-gradient(0deg, #ff6a00 0%, #ee0979 100%);
     background-repeat: no-repeat;
   }
+
+.red-text {
+  color: red;
+}

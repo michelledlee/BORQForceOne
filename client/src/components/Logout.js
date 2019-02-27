@@ -43,6 +43,7 @@ class Logout extends Component {
     axios
       .post("/logout")
       .then(res => {
+        console.log(res); 
         this.props.history.push("/landing"); // re-direct to landing on successful register
       })
       .catch(err => console.log(err));

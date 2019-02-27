@@ -47,11 +47,13 @@ class Register extends Component {
       password2: this.state.password2
     };
 
-    axios.post('/users', newUser)
+    axios
+      .post("/users", newUser)
       .then(res => this.props.history.push("/login")) // re-direct to login on successful register
       .catch(err => {
-        this.setState({ errors: err.response.data});
-        console.log(err)});
+        this.setState({ errors: err.response.data });
+        console.log(err);
+      });
   };
 
   render() {
@@ -59,7 +61,10 @@ class Register extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-lg-10 col-xl-9 mx-auto" style={{padding:"100px"}}>
+          <div
+            className="col-lg-10 col-xl-9 mx-auto"
+            style={{ padding: "100px" }}
+          >
             <div className="card card-signin flex-row my-5">
               <div className="card-img-left d-none d-md-flex col-6" />
               <div className="card-body">
@@ -74,7 +79,7 @@ class Register extends Component {
                   onSubmit={this.onSubmit}
                 >
                   <div className="form-label-group">
-                                      <label htmlFor="name">Name</label>
+                    <label htmlFor="name">Name</label>
                     <input
                       onChange={this.onChange}
                       value={this.state.name}
@@ -85,10 +90,11 @@ class Register extends Component {
                         invalid: errors.name
                       })}
                     />
-                    <span className="red-text">{errors.name}</span>
                   </div>
+                  <span className="red-text">{errors.name}</span>
+
                   <div className="form-label-group">
-                                      <label htmlFor="email">Email</label>
+                    <label htmlFor="email">Email</label>
 
                     <input
                       onChange={this.onChange}
@@ -100,10 +106,11 @@ class Register extends Component {
                         invalid: errors.email
                       })}
                     />
-                    <span className="red-text">{errors.email}</span>
                   </div>
+                  <span className="red-text">{errors.email}</span>
+
                   <div className="form-label-group">
-                                      <label htmlFor="password">Password</label>
+                    <label htmlFor="password">Password</label>
 
                     <input
                       onChange={this.onChange}
@@ -115,10 +122,11 @@ class Register extends Component {
                         invalid: errors.password
                       })}
                     />
-                    <span className="red-text">{errors.password}</span>
                   </div>
+                  <span className="red-text">{errors.password}</span>
+
                   <div className="form-label-group">
-                                      <label htmlFor="password2">Confirm Password</label>
+                    <label htmlFor="password2">Confirm Password</label>
 
                     <input
                       onChange={this.onChange}
@@ -130,20 +138,20 @@ class Register extends Component {
                         invalid: errors.password2
                       })}
                     />
-                    <span className="red-text">{errors.password2}</span>
-                    <button
-                      style={{
-                        width: "150px",
-                        borderRadius: "3px",
-                        letterSpacing: "1.5px",
-                        marginTop: "1rem"
-                      }}
-                      type="submit"
-                      className="btn btn-lg btn-primary btn-block text-uppercase"
-                    >
-                      Sign up
-                    </button>
                   </div>
+                  <span className="red-text">{errors.password2}</span>
+                  <button
+                    style={{
+                      width: "150px",
+                      borderRadius: "3px",
+                      letterSpacing: "1.5px",
+                      marginTop: "1rem"
+                    }}
+                    type="submit"
+                    className="btn btn-lg btn-primary btn-block text-uppercase"
+                  >
+                    Sign up
+                  </button>
                 </form>
               </div>
             </div>
@@ -166,6 +174,6 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-  mapStateToProps,
+  mapStateToProps
   // { registerUser }
 )(withRouter(Register));

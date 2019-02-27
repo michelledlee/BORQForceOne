@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import setAuthToken from "../actions/setAuthToken";
-// import jwt_decode from "jwt-decode";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import { loginUser } from "../actions/authActions";
 import classnames from "classnames";
 
 export const USER_LOADING = "USER_LOADING";
@@ -18,7 +15,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      errors: ""
+      errors: {}
     };
   }
 
@@ -30,13 +27,16 @@ class Login extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/dashboard"); // push user to dashboard when they login
-    }
+    // get errors if not validated correctly
     if (nextProps.errors) {
       this.setState({
         errors: nextProps.errors
       });
+    }
+
+    // if we made it through the login process
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/dashboard"); // push user to dashboard when they login
     }
   }
 
@@ -53,6 +53,7 @@ class Login extends Component {
 
   onSubmit = e => {
     e.preventDefault();
+
     const userData = {
       email: this.state.email,
       password: this.state.password
@@ -60,32 +61,12 @@ class Login extends Component {
 
     axios
       .post("/login", userData)
-      // .then(res => console.log(res))
       .then(res => {
-        if (res.data.error) {
-          // display error message
-        } else if (res.data.email) {
           localStorage.setItem("email", res.data.email);
-          this.props.history.push("/dashboard");
-        }
-      }) // re-direct to login on successful register
-      .catch(function(error) {
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          // that falls out of the range of 2xx
-          console.log(error.response.data);
-          console.log(error.response.status);
-          console.log(error.response.headers);
-        } else if (error.request) {
-          // The request was made but no response was received
-          // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-          // http.ClientRequest in node.js
-          console.log(error.request);
-        } else {
-          // Something happened in setting up the request that triggered an Error
-          console.log("Error", error.message);
-        }
-        console.log(error.config);
+          this.props.history.push("/dashboard"); // re-direct to login on successful register
+      }) 
+      .catch(err => {
+        this.setState({ errors: err.response.data });
       });
   };
 
@@ -122,12 +103,11 @@ class Login extends Component {
                         invalid: errors.email || errors.emailnotfound
                       })}
                     />
-
+                  </div>
                     <span className="red-text">
                       {errors.email}
                       {errors.emailnotfound}
                     </span>
-                  </div>
                   <div className="form-label-group">
                     <label htmlFor="password">Password</label>
                     <input
@@ -140,6 +120,7 @@ class Login extends Component {
                         invalid: errors.password || errors.passwordincorrect
                       })}
                     />
+                  </div>
 
                     <span className="red-text">
                       {errors.password}
@@ -157,7 +138,6 @@ class Login extends Component {
                     >
                       Login
                     </button>
-                  </div>
                 </form>
               </div>
             </div>

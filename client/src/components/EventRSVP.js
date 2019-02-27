@@ -46,6 +46,7 @@ export default class EventRSVP extends Component {
         onClick={this.onClick}>
         RSVP
       </button>
+      <br />
       </div>
       );
   }
