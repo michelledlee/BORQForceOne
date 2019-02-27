@@ -6,6 +6,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const users = require("./api/users");
 const session = require("express-session");
+const PORT = process.env.PORT || 3001;
 
 const validateRegisterInput = require("./validation/register");
 const validateLoginInput = require("./validation/login");
@@ -13,6 +14,9 @@ const validateLoginInput = require("./validation/login");
 let path = require('path');
 
 let db;
+
+
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 // session stuff 
 app.use(session({ secret: "Shh, its a secret!" }));
@@ -30,18 +34,11 @@ MongoClient.connect('mongodb+srv://michelledlee:wVewSigYCrfARa0N@borq-s5a7m.mong
 		db = client.db('borq');
 
 	// start server only when database is connected
-	app.listen(3001, () => {
-		console.log('listening on 3001')
+	app.listen(PORT, () => {
+		console.log('listening on ' + PORT)
 	});
 });
 
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, './client/public/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
 
 // handles registration post request
 app.post('/users', (req, res) => {
