@@ -1,9 +1,17 @@
-import React, { Component } from "react";
-import axios from "axios";
-import PropTypes from "prop-types";
+// import React, { Component } from "react";
+// import axios from "axios";
+// import PropTypes from "prop-types";
 import Attendee from "./Attendee.js";
 
-export default class EventRSVP extends Component {
+import React, { Component } from "react";
+import axios from "axios";
+import { Link, withRouter } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+// import { registerDog } from "../actions/authActions";
+import classnames from "classnames";
+
+class EventRSVP extends Component {
   constructor(props) {
     super(props);
 
@@ -15,12 +23,20 @@ export default class EventRSVP extends Component {
     };
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
+  }
+  
   renderAttendees() {
     return this.state.attendees.map((a, i) => <Attendee key={i++} attendee={a} />);
   }
 
-  onClick = e => {
-    e.preventDefault();
+  onClick(e) {
+    // e.preventDefault();
 
     const rsvpMe = {
       name: this.state.name,
@@ -30,7 +46,7 @@ export default class EventRSVP extends Component {
     axios.post('/rsvp', rsvpMe)
       .then(res => this.props.history.push("/myevents")) // re-direct to my events page on successful RSVP
       .catch(err => console.log(err));
-  };
+  }
 
   render() {
     return (
@@ -56,7 +72,7 @@ export default class EventRSVP extends Component {
         }}
         type="submit"
         className="btn btn-lg btn-primary btn-block text-uppercase"
-        onClick={this.onClick}>
+        onClick={this.onClick.bind(this)}>
         RSVP
       </button>
       <br />
@@ -68,3 +84,13 @@ export default class EventRSVP extends Component {
 EventRSVP.propTypes = {
   EventRSVP: PropTypes.object
 };
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  // { registerDog}
+)(withRouter(EventRSVP));

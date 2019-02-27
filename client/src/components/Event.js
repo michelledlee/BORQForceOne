@@ -16,12 +16,12 @@ export default class Event extends Component {
   render() {
     return (
       <div className="Comment col-4">
-      <br />
       <span><strong>Name: </strong> {this.props.event.name}</span><br />
       <span><strong>Date: </strong> {this.props.event.date}</span><br />
       <span><strong>Time: </strong> {this.props.event.time}</span><br />
       <span><strong>Description: </strong> {this.props.event.description}</span>
       <br />
+            <p></p>
       </div>
       );
   }
