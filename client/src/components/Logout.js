@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 // import setAuthToken from "../actions/setAuthToken";
 // import jwt_decode from "jwt-decode";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 // import { LogoutUser } from "../actions/authActions";
