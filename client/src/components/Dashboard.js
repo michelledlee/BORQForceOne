@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import '../App.css';
+import Logout from "./Logout.js";
 
 
 class Dashboard extends Component {
@@ -24,18 +25,7 @@ class Dashboard extends Component {
       <Link to="/myevents" className="btn btn-lg btn-primary btn-block text-uppercase">My Events</Link>
       <Link to="/browseevents" className="btn btn-lg btn-primary btn-block text-uppercase">Browse Events</Link>
 
-      <button
-      style={{
-        width: "150px",
-        borderRadius: "3px",
-        letterSpacing: "1.5px",
-        marginTop: "1rem"
-      }}
-      onClick={this.onLogoutClick}
-      className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-      >
-      Logout
-      </button>
+      <Logout />
       </div>
       </div>
       </div>

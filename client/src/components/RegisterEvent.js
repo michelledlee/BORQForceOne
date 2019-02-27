@@ -53,7 +53,10 @@ class RegisterEvent extends Component {
     };
 
     axios.post('/events', newEvent)
-      .then(res => console.log(res))
+      .then(res => {
+        this.props.history.push("/browseevents");
+        console.log(res) 
+        })
       .catch(err => console.log(err));
   };
 
@@ -67,7 +70,9 @@ class RegisterEvent extends Component {
               <div className="card-img-left d-none d-md-flex col-6" />
               <div className="card-body">
                 <h5 className="card-title">Add Event</h5>
-
+                <p className="grey-text text-darken-1">
+                  Back to <Link to="/browseevents">Browse Events</Link>
+                </p>
                 
                 <form
                   className="form-signin"

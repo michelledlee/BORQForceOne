@@ -8,6 +8,9 @@ const users = require("./api/users");
 const session = require("express-session");
 const PORT = process.env.PORT || 3001;
 
+const validateRegisterInput = require("./validation/register");
+const validateLoginInput = require("./validation/login");
+
 let path = require('path');
 
 let db;
@@ -24,9 +27,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 // for parsing application/json
 app.use(bodyParser.json()); // for parsing application/json
 
-// Routes
-// app.use("/api/users", users);
-
+// mongo connection
 MongoClient.connect('mongodb+srv://michelledlee:wVewSigYCrfARa0N@borq-s5a7m.mongodb.net/borq?retryWrites=true', (err, client) => {
 	if (err) return console.log(err)
 
@@ -39,8 +40,27 @@ MongoClient.connect('mongodb+srv://michelledlee:wVewSigYCrfARa0N@borq-s5a7m.mong
 });
 
 
-// handles quotes post request
+// handles registration post request
 app.post('/users', (req, res) => {
+	// validate input
+	const { errors, isValid } = validateRegisterInput(req.body);
+	console.log(errors);
+	console.log(isValid);
+
+	// if the input is not valid, return errors
+	if (!isValid) {
+		return res.status(400).json(errors);
+	}
+
+	// see if the user has already been added
+	db.collection('users').findOne({email: req.body.email}).then(user => {
+		// case if the user exists; leave
+		if (user) {
+			return res.status(400).json({email: "Email already exists"});
+		}
+	})
+
+	// store the user in the database
 	console.log(req.body);
 	let newUser = req.body;
 	    // Hash password before saving in database
@@ -76,7 +96,7 @@ app.get('/loggedIn', (req, res) => {
 		res.send(req.session.user);
 	}
 	else {
-		res.send({nope:"nope"});
+		res.send({nope:"no log for you"});
 	}
 })
 
@@ -88,7 +108,7 @@ app.get('/getmydogs', (req, res) => {
 		res.send(JSON.stringify(docs));
 		});
 	} else {
-		res.send({nope:"nope"});
+		res.send({nope:"no dogs for you"});
 	}
 })
 
@@ -101,7 +121,7 @@ app.get('/getmyevents', (req, res) => {
 		res.send(JSON.stringify(docs));
 		});
 	} else {
-		res.send({nope:"nope"});
+		res.send({nope:"no events for you"});
 	}
 })
 
@@ -127,6 +147,17 @@ app.post('/events', (req, res) => {
 
 // login
 app.post('/login', (req, res) => {
+
+	// run login information through validator
+	const { errors, isValid} = validateLoginInput(req.body);
+
+	// check validation
+	if (!isValid) {
+		console.log(errors);
+		return res.status(400).json(errors);
+	}
+
+	// information is valid, proceed to login
 	console.log("server");
 	console.log(req.body);
 	const email = req.body.email;
@@ -158,6 +189,14 @@ app.post('/rsvp', (req, res) => {
 	console.log(req.body);
 	const eventName = req.body.name;
 	db.collection('events').findOneAndUpdate({name: eventName}, {$addToSet:{rsvp : req.session.user.email}}).then(user => {
-
+		res.send("completed");
 	});
+
+});
+
+// handles logout request
+app.post('/logout', (req, res) => {
+	req.session.destroy();
+	res.send("session ded");
+	console.log("session ded");
 });
