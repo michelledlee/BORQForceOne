@@ -3,16 +3,23 @@
 ## Website/App Objective  
 BORQ is service that unites dog owners in fun! BORQ aggregates local events for dogs and their owners to meetup and have a good time. BORQ provides sponsored events that come with swag but users can also add their own dog parties! 
 
+## Technologies  
++ HTML5/CSS
++ JavaScript
++ BootStrap
++ JQuery
++ React/Redux
+
 ## Screenshots
 
 **Full Sized Homepage** 
-![Image of Homepage (Full-Sized)](https://UPDATEMEBABY)
+![Image of Homepage (Full-Sized)](https://github.com/michelledlee/BORQForceOne/blob/master/client/public/homepage1.PNG?raw=true)
 
 **Responsive Homepage**
-![Image of Homepage (Resized)](https://UPDATEMEBABY)
+![Image of Homepage (Resized)](https://github.com/michelledlee/BORQForceOne/blob/master/client/public/homepage2.PNG?raw=true)
 
-**Dogs Page**
-![Dogs Page](https://UPDATEMEBABY)
+**Dashboard Page**
+![Dogs Page](https://github.com/michelledlee/BORQForceOne/blob/master/client/public/dashboard1.PNG?raw=true)
 
 ## Demo Gifs
 **Responsive Resizing in Action**  
