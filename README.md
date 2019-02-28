@@ -54,7 +54,7 @@ node server.js
 
 
 ## Author Link
-[Michelle Lee](https://michelledlee.github.io/)
+[Michelle Lee](https://michelledlee.github.io/)  
 [Cole Garbo](https://coleig.github.io/)
 
 ## Class Link
