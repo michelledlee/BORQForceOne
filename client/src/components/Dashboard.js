@@ -9,7 +9,6 @@ import Logout from "./Logout.js";
 class Dashboard extends Component {
 
   render() {
-    // const { user } = this.props.history;
     return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
       <div className="row">
@@ -34,14 +33,13 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
-  // logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
+
 const mapStateToProps = state => ({
   auth: state.auth
 });
+
 export default connect(
   mapStateToProps,
-  // { logoutUser }
   )(Dashboard);
-// export default Dashboard;

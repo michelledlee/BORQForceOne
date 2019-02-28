@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import { registerEvent } from "../actions/authActions";
 import classnames from "classnames";
 
 class RegisterEvent extends Component {
@@ -197,7 +196,6 @@ class RegisterEvent extends Component {
 }
 
 RegisterEvent.propTypes = {
-  // registerEvent: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
@@ -209,5 +207,4 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps
-  // { registerEvent}
 )(withRouter(RegisterEvent));

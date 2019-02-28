@@ -148,7 +148,6 @@ class Login extends Component {
   }
 }
 Login.propTypes = {
-  // loginUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
@@ -158,5 +157,4 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps
-  // { loginUser }
 )(withRouter(Login));

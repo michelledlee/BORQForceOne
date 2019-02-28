@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import { logoutUser } from "../../actions/authActions";
 import EventRSVP from "./EventRSVP.js";
 import Logout from "./Logout.js";
 
@@ -68,7 +67,6 @@ class BrowseEvents extends Component {
   }
 }
 BrowseEvents.propTypes = {
-  // logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
@@ -76,5 +74,4 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps
-  // { logoutUser }
 )(BrowseEvents);

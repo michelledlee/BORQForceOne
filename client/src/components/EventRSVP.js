@@ -1,15 +1,9 @@
-// import React, { Component } from "react";
-// import axios from "axios";
-// import PropTypes from "prop-types";
 import Attendee from "./Attendee.js";
-
 import React, { Component } from "react";
 import axios from "axios";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import { registerDog } from "../actions/authActions";
-import classnames from "classnames";
 
 class EventRSVP extends Component {
   constructor(props) {
@@ -36,8 +30,6 @@ class EventRSVP extends Component {
   }
 
   onClick(e) {
-    // e.preventDefault();
-
     const rsvpMe = {
       name: this.state.name,
       email: this.state.email,
@@ -92,5 +84,4 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  // { registerDog}
 )(withRouter(EventRSVP));
