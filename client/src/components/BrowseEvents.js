@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 // import { logoutUser } from "../../actions/authActions";
 import EventRSVP from "./EventRSVP.js";
+import EventsMapContainer from "./EventsMapContainer";
 
 class BrowseEvents extends Component {
   constructor(props) {
@@ -42,6 +43,9 @@ class BrowseEvents extends Component {
       <div style={{ height: "75vh" }} className="container valign-wrapper">
         <div className="row">
           <div className="col s12 center-align" style={{ padding: "100px" }}>
+            <EventsMapContainer 
+            events={this.state.events}
+            />
             <h4>
               <b>Hey there, {localStorage.getItem("email")}</b> !
             </h4>
