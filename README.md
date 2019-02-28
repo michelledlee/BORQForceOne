@@ -54,5 +54,5 @@ node server.js
 [CS-5610 Web Development Spring 2019](http://johnguerra.co/classes/webDevelopment_spring_2019/)
 
 ## Link to Video Demonstration
-[Demonstration on YouTube](https://UDPATEMEBABY)  
+[Demonstration on YouTube](https://youtu.be/iiKXtHgBpnQ)  
 [Google Slides Presentation](https://docs.google.com/presentation/d/16-ZA5LnjaZsl0-46gaoYuSBdyNK9qfhJlNKrf2EfuZs/edit?usp=sharing)
