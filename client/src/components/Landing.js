@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
 import '../App.css';
 
 class Landing extends Component {
@@ -36,7 +35,7 @@ class Landing extends Component {
                 <div className="p-5">
                   <h2 className="display-4">For those who love to BORQ...</h2>
                   <p>
-                    For dog owners who want to spoil their pups with pawsitively pawfect parties, sign up for BORQ today!
+                    For dog owners who want to spoil their pups with pawsitively pawfect parties, sign up for BORQ today! 
                   </p>
                 </div>
               </div>
@@ -97,7 +96,7 @@ class Landing extends Component {
         <footer className="py-5 bg-black">
           <div className="container">
             <p className="m-0 text-center text-white small">
-              Copyright &copy; Your Website 2019
+              Copyright &copy; BORQ 2019
             </p>
           </div>
         </footer>

@@ -29,7 +29,7 @@ export default class Dog extends Component {
 }
 
 Dog.propTypes = {
-  dog: PropTypes.object.isRequired
+  dog: PropTypes.object
 };
 
 

@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import { registerDog } from "../actions/authActions";
 import classnames from "classnames";
 
 class RegisterDog extends Component {
@@ -18,7 +17,6 @@ class RegisterDog extends Component {
       errors: {}
     };
   }
-
 
   componentDidMount() {
     // If logged in and user navigates to Register page, should redirect them to dashboard
@@ -50,7 +48,8 @@ class RegisterDog extends Component {
       gender: this.state.gender
     };
 
-    axios.post('/dogs', newDog)
+    axios
+      .post("/dogs", newDog)
       .then(res => this.props.history.push("/mydogs"))
       .catch(err => console.log(err));
   };
@@ -60,7 +59,10 @@ class RegisterDog extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-lg-10 col-xl-9 mx-auto" style={{padding:"100px"}}>
+          <div
+            className="col-lg-10 col-xl-9 mx-auto"
+            style={{ padding: "100px" }}
+          >
             <div className="card card-signin flex-row my-5">
               <div className="card-img-left d-none d-md-flex col-6" />
               <div className="card-body">
@@ -74,8 +76,8 @@ class RegisterDog extends Component {
                   noValidate
                   onSubmit={this.onSubmit}
                 >
-                <div className="form-label-group">
-                                    <label htmlFor="name">Email</label>
+                  <div className="form-label-group">
+                    <label htmlFor="name">Email</label>
 
                     <input
                       onChange={this.onChange}
@@ -90,7 +92,7 @@ class RegisterDog extends Component {
                     <span className="red-text">{errors.myemail}</span>
                   </div>
                   <div className="form-label-group">
-                                      <label htmlFor="name">Name</label>
+                    <label htmlFor="name">Dog's Name</label>
 
                     <input
                       onChange={this.onChange}
@@ -105,7 +107,7 @@ class RegisterDog extends Component {
                     <span className="red-text">{errors.name}</span>
                   </div>
                   <div className="form-label-group">
-                                      <label htmlFor="age">Age</label>
+                    <label htmlFor="age">Age</label>
 
                     <input
                       onChange={this.onChange}
@@ -120,8 +122,7 @@ class RegisterDog extends Component {
                     <span className="red-text">{errors.age}</span>
                   </div>
                   <div className="form-label-group">
-                                      <label htmlFor="breed">Breed</label>
-
+                    <label htmlFor="breed">Breed</label>
                     <input
                       onChange={this.onChange}
                       value={this.state.breed}
@@ -135,8 +136,7 @@ class RegisterDog extends Component {
                     <span className="red-text">{errors.breed}</span>
                   </div>
                   <div className="form-label-group">
-                                      <label htmlFor="gender">Gender</label>
-
+                    <label htmlFor="gender">Gender</label>
                     <input
                       onChange={this.onChange}
                       value={this.state.gender}
@@ -172,7 +172,6 @@ class RegisterDog extends Component {
 }
 
 RegisterDog.propTypes = {
-  // registerDog: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
@@ -182,7 +181,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(
-  mapStateToProps,
-  // { registerDog}
-)(withRouter(RegisterDog));
+export default connect(mapStateToProps)(withRouter(RegisterDog));

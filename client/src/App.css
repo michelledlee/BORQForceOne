@@ -184,13 +184,6 @@ header.masthead .bg-circle-4 {
   margin-bottom: 1rem;
 }
 
-/*.form-label-group>input,
-.form-label-group>label {
-  padding: var(--input-padding-y) var(--input-padding-x);
-  height: auto;
-  border-radius: 2rem;
-}*/
-
 .form-label-group>label {
  
   display: block;
@@ -247,3 +240,36 @@ header.masthead .bg-circle-4 {
     background: linear-gradient(0deg, #ff6a00 0%, #ee0979 100%);
     background-repeat: no-repeat;
   }
+
+.red-text {
+  color: red;
+}
+
+nav ol{height:100px; width:100%;}
+
+nav ol{overflow:hidden; overflow-y:scroll;}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+.spandescription{
+  display: block;
+  height:50px;
+}

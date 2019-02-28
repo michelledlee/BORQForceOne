@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import { registerEvent } from "../actions/authActions";
 import classnames from "classnames";
 
 class RegisterEvent extends Component {
@@ -15,11 +14,11 @@ class RegisterEvent extends Component {
       time: "",
       lat: "",
       long: "",
+      description: "",
       rsvp: [],
       errors: {}
     };
   }
-
 
   componentDidMount() {
     // If logged in and user navigates to Register page, should redirect them to dashboard
@@ -49,14 +48,16 @@ class RegisterEvent extends Component {
       time: this.state.time,
       lat: this.state.lat,
       long: this.state.long,
+      description: this.state.description,
       rsvp: this.state.rsvp
     };
 
-    axios.post('/events', newEvent)
+    axios
+      .post("/events", newEvent)
       .then(res => {
         this.props.history.push("/browseevents");
-        console.log(res) 
-        })
+        console.log(res);
+      })
       .catch(err => console.log(err));
   };
 
@@ -65,7 +66,10 @@ class RegisterEvent extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col-lg-10 col-xl-9 mx-auto" style={{padding:"100px"}}>
+          <div
+            className="col-lg-10 col-xl-9 mx-auto"
+            style={{ padding: "100px" }}
+          >
             <div className="card card-signin flex-row my-5">
               <div className="card-img-left d-none d-md-flex col-6" />
               <div className="card-body">
@@ -73,14 +77,14 @@ class RegisterEvent extends Component {
                 <p className="grey-text text-darken-1">
                   Back to <Link to="/browseevents">Browse Events</Link>
                 </p>
-                
+
                 <form
                   className="form-signin"
                   noValidate
                   onSubmit={this.onSubmit}
                 >
                   <div className="form-label-group">
-                                      <label htmlFor="name">Name</label>
+                    <label htmlFor="name">Name</label>
 
                     <input
                       onChange={this.onChange}
@@ -95,8 +99,7 @@ class RegisterEvent extends Component {
                     <span className="red-text">{errors.name}</span>
                   </div>
                   <div className="form-label-group">
-                                      <label htmlFor="date">Date</label>
-
+                    <label htmlFor="date">Date</label>
                     <input
                       onChange={this.onChange}
                       value={this.state.date}
@@ -110,7 +113,7 @@ class RegisterEvent extends Component {
                     <span className="red-text">{errors.date}</span>
                   </div>
                   <div className="form-label-group">
-                                      <label htmlFor="time">Time</label>
+                    <label htmlFor="time">Time</label>
 
                     <input
                       onChange={this.onChange}
@@ -125,7 +128,7 @@ class RegisterEvent extends Component {
                     <span className="red-text">{errors.time}</span>
                   </div>
                   <div className="form-label-group">
-                                      <label htmlFor="lat">Latitude</label>
+                    <label htmlFor="lat">Latitude</label>
 
                     <input
                       onChange={this.onChange}
@@ -139,34 +142,48 @@ class RegisterEvent extends Component {
                     />
                     <span className="red-text">{errors.lat}</span>
                     <div className="form-label-group">
-                                        <label htmlFor="long">Longitude</label>
-
-                    <input
-                      onChange={this.onChange}
-                      value={this.state.long}
-                      error={errors.long}
-                      id="long"
-                      type="long"
-                      className={classnames("", {
-                        invalid: errors.long
-                      })}
-                    />
-                    <span className="red-text">{errors.long}</span>
-                     <div className="form-label-group">
-                    <button
-                      style={{
-                        width: "150px",
-                        borderRadius: "3px",
-                        letterSpacing: "1.5px",
-                        marginTop: "1rem"
-                      }}
-                      type="submit"
-                      className="btn btn-lg btn-primary btn-block text-uppercase"
-                    >
-                      Submit
-                    </button>
-                  </div>
-                  </div>
+                      <label htmlFor="long">Longitude</label>
+                      <input
+                        onChange={this.onChange}
+                        value={this.state.long}
+                        error={errors.long}
+                        id="long"
+                        type="long"
+                        className={classnames("", {
+                          invalid: errors.long
+                        })}
+                      />
+                      <span className="red-text">{errors.long}</span>
+                       </div>
+                      <div className="form-label-group">
+                      <label htmlFor="long">Description</label>
+                      <input
+                        maxLength="100"
+                        onChange={this.onChange}
+                        value={this.state.description}
+                        error={errors.description}
+                        id="description"
+                        type="description"
+                        className={classnames("", {
+                          invalid: errors.description
+                        })}
+                      />
+                      <span className="red-text">{errors.description}</span>
+                       </div>
+                      <div className="form-label-group">
+                        <button
+                          style={{
+                            width: "150px",
+                            borderRadius: "3px",
+                            letterSpacing: "1.5px",
+                            marginTop: "1rem"
+                          }}
+                          type="submit"
+                          className="btn btn-lg btn-primary btn-block text-uppercase"
+                        >
+                          Submit
+                        </button>
+                      </div>
                   </div>
                 </form>
               </div>
@@ -179,7 +196,6 @@ class RegisterEvent extends Component {
 }
 
 RegisterEvent.propTypes = {
-  // registerEvent: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
   errors: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
 };
@@ -190,6 +206,5 @@ const mapStateToProps = state => ({
 });
 
 export default connect(
-  mapStateToProps,
-  // { registerEvent}
+  mapStateToProps
 )(withRouter(RegisterEvent));

@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import { logoutUser } from "../../actions/authActions";
 import Event from "./Event.js";
+import Logout from "./Logout.js";
 
 class MyEvents extends Component {
 
@@ -31,12 +31,7 @@ class MyEvents extends Component {
   renderEvents() {
     return this.state.events.map((eve, i) => <Event key={i++} event={eve} />);
   }
-
-  onLogoutClick = e => {
-    e.preventDefault();
-    this.props.logoutUser();
-  };
-
+  
   render() {
     return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
@@ -50,25 +45,14 @@ class MyEvents extends Component {
 
       <div className="row">{this.renderEvents()}</div>
 
-      <p> <Link to="/registerevent">Add Event</Link></p>
+      <p> <Link to="/registerevent">Create New Event</Link></p>
 
       <Link to="/mydogs" className="btn btn-lg btn-primary btn-block text-uppercase">My Dogs</Link>
       <Link to="/dashboard" className="btn btn-lg btn-primary btn-block text-uppercase">My Home</Link>
       <Link to="/browseevents" className="btn btn-lg btn-primary btn-block text-uppercase">Browse Events</Link>
 
 
-      <button
-      style={{
-        width: "150px",
-        borderRadius: "3px",
-        letterSpacing: "1.5px",
-        marginTop: "1rem"
-      }}
-      onClick={this.onLogoutClick}
-      className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-      >
-      Logout
-      </button>
+      <Logout />
       </div>
       </div>
       </div>
@@ -76,7 +60,6 @@ class MyEvents extends Component {
   }
 }
 MyEvents.propTypes = {
-  // logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
@@ -84,5 +67,4 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  // { logoutUser }
   )(MyEvents);

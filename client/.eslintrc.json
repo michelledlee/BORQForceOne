@@ -6,9 +6,6 @@
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 2015,
-        "sourceType": "module"
-    },
         "ecmaFeatures": {
             "jsx": true
         },
@@ -33,7 +30,7 @@
         ],
         "semi": [
             "error",
-            "always"
+            "never"
         ]
     }
 }

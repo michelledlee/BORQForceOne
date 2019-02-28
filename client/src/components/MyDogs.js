@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-// import { logoutUser } from "../../actions/authActions";
 import Dog from "./Dog.js";
+import Logout from "./Logout.js";
+
 
 class MyDogs extends Component {
 
@@ -34,12 +35,6 @@ class MyDogs extends Component {
     return this.state.dogs.map((d, i) => <Dog key={i++} dog={d} />);
   }
 
-  onLogoutClick = e => {
-    e.preventDefault();
-    this.props.logoutUser();
-  };
-
-
   render() {
     return (
       <div style={{ height: "75vh" }} className="container valign-wrapper">
@@ -60,18 +55,7 @@ class MyDogs extends Component {
 
 
 
-      <button
-      style={{
-        width: "150px",
-        borderRadius: "3px",
-        letterSpacing: "1.5px",
-        marginTop: "1rem"
-      }}
-      onClick={this.onLogoutClick}
-      className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-      >
-      Logout
-      </button>
+      <Logout />
       </div>
       </div>
       </div>
@@ -79,7 +63,6 @@ class MyDogs extends Component {
   }
 }
 MyDogs.propTypes = {
-  // logoutUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 const mapStateToProps = state => ({
@@ -87,5 +70,4 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  // { logoutUser }
   )(MyDogs);

@@ -4,7 +4,6 @@ const MongoClient = require('mongodb').MongoClient;
 const app = express();
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-const users = require("./api/users");
 const session = require("express-session");
 const PORT = process.env.PORT || 3001;
 
@@ -19,7 +18,10 @@ let db;
 app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 // session stuff 
-app.use(session({ secret: "Shh, its a secret!" }));
+app.use(session({ 
+	secret: "Shh, its a secret!",
+	resave: true,
+    saveUninitialized: true }));
 
 // extract data from <form> and add to body property in request
 app.use(bodyParser.urlencoded({extended: true}));
@@ -87,6 +89,7 @@ app.post('/dogs', (req, res) => {
 
 			console.log('saved to database');
 		res.redirect('/');
+		// res.send("nice dog");
 	});
 });
 
@@ -142,6 +145,7 @@ app.post('/events', (req, res) => {
 
 			console.log('saved to database');
 		res.redirect('/');
+		// res.send("event sent");
 	});
 });
 
@@ -163,7 +167,6 @@ app.post('/login', (req, res) => {
 	const email = req.body.email;
   const password = req.body.password;
 	db.collection('users').findOne({email : email}).then(user => {
-		console.log(user.password);
 		// Check if user exists
    		 if (!user) {
       	return res.status(404).json({ emailnotfound: "Email not found" });
@@ -188,8 +191,10 @@ app.post('/login', (req, res) => {
 app.post('/rsvp', (req, res) => {
 	console.log(req.body);
 	const eventName = req.body.name;
+	console.log(req.session.user);
 	db.collection('events').findOneAndUpdate({name: eventName}, {$addToSet:{rsvp : req.session.user.email}}).then(user => {
 		res.send("completed");
+		// res.redirect('/');
 	});
 
 });
