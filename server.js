@@ -203,5 +203,4 @@ app.post('/rsvp', (req, res) => {
 app.post('/logout', (req, res) => {
 	req.session.destroy();
 	res.send("session ded");
-	console.log("session ded");
 });
