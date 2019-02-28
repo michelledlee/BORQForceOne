@@ -29,8 +29,8 @@ Chrome
 node -v
 npm -v
 ```
-..A. If node is not installed, install it [here](https://nodejs.org/en/download/)
-..B. Install npm by running:
+2A. If node is not installed, install it [here](https://nodejs.org/en/download/)  
+2B. Install npm by running:
 ```
 npm install npm@latest -g
 ```
