@@ -6,48 +6,45 @@ BORQ is service that unites dog owners in fun! BORQ aggregates local events for 
 ## Screenshots
 
 **Full Sized Homepage** 
-![Image of Homepage (Full-Sized)](https://michelledlee.github.io/img/screenshot1.png)
+![Image of Homepage (Full-Sized)](https://UPDATEMEBABY)
 
 **Responsive Homepage**
-![Image of Homepage (Resized)](https://michelledlee.github.io/img/screenshot2.png)
+![Image of Homepage (Resized)](https://UPDATEMEBABY)
+
+**Dogs Page**
+![Dogs Page](https://UPDATEMEBABY)
 
 ## Demo Gifs
 **Responsive Resizing in Action**  
-![Responsive Pages](https://michelledlee.github.io/img/gif3.gif)
-
-**Gallery Demonstration**  
-![Gallery Demonstration](https://michelledlee.github.io/img/gif2.gif)
-
-**Modal Window**  
-![Modal Window](https://michelledlee.github.io/img/gif1.gif)
-
+![Browse Events](https://UPDATEMEBABY)
 
 ## Tech Requirements
 Text Editor (Authors recommend Sublime)
 Chrome
 
 ## How to Install/Use
-Clone
-install node
-install npm
-npm install
-cd web director
+1. Clone the repository
+2. Check if node and npm are installed by running:
+```
+node -v
+npm -v
+```
+..A. If node is not installed, install it [here](https://nodejs.org/en/download/)
+..B. Install npm by running:
+```
+npm install npm@latest -g
+```
+3. Navigate to the client directory and execute the following commands:
+```
 yarn install
 yarn build
 yarn start
-npm start
 ```
-python -V
+4. Navigate back to the root direcdtory of the project and execute the following command:
 ```
-If the version of Python is 3.X run the server with
+node server.js
 ```
-python3 -m http.server
-```
-If the version of Python is 2.X run the server with
-```
-python -m SimpleHTTPServer
-```
-Choose the HTML file to preview and run in your Chrome browser
+
 
 ## Author Link
 [Michelle Lee](https://michelledlee.github.io/)
