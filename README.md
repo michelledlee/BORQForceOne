@@ -22,8 +22,8 @@ BORQ is service that unites dog owners in fun! BORQ aggregates local events for 
 ![Dogs Page](https://github.com/michelledlee/BORQForceOne/blob/master/client/public/dashboard1.PNG?raw=true)
 
 ## Demo Gifs
-**Responsive Resizing in Action**  
-![Browse Events](https://UPDATEMEBABY)
+**Browse Events and Map**  
+![Browse Events](https://github.com/michelledlee/BORQForceOne/blob/master/client/public/gifit_1551321321039.gif?raw=true)
 
 ## Tech Requirements
 Text Editor (Authors recommend Sublime)
